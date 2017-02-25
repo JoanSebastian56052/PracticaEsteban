@@ -9,6 +9,12 @@ public class ListaSimple {
     
     private Nodo primero;
     private Nodo ultimo;
+    private double evaluar;
+    private double total = 0;
+    private ListaSimple aux;
+    private Nodo auxiliar;
+    private Nodo a;
+    private Nodo b;
     
     public ListaSimple() {
         primero = null;
@@ -37,45 +43,69 @@ public class ListaSimple {
         return false;
     }
     
-    public void recorre() {
+    public double recorre(double v) {
         Nodo p;
         p = primerNodo();
         
         while(!finRecorrido(p)) {
-            p = p.retornaLiga();
+            evaluar = p.getCoeficiente();
+            evaluar = evaluar * (double)Math.pow(v, p.getExponente());
+            total = total + evaluar;
+            p = p.getLiga();
         }
+        return (total);
     }
     
-    Nodo buscaInsertar(int s, int c, int e) {
+    public ListaSimple sumaPolinomios(ListaSimple p, ListaSimple q) {
+        a = p.primerNodo();
+        b= q.primerNodo();
+        
+        while ((a.getExponente() != 0) || (b.getExponente() != 0)) {
+            if(a.getExponente() == b.getExponente()) {
+                auxiliar.setCoeficiente(a.getCoeficiente()+a.getCoeficiente());
+                auxiliar.setExponente(a.getExponente());
+                aux.insertar(auxiliar.getCoeficiente(),auxiliar.getExponente(), aux.buscaInsertar(auxiliar.getCoeficiente(), auxiliar.getExponente()));
+            } else if(a.getExponente() > b.getExponente()) {
+                aux.insertar(a.getCoeficiente(), a.getExponente(), aux.buscaInsertar(a.getCoeficiente(), a.getExponente()));
+                a = a.getLiga();
+            } else {
+                aux.insertar(b.getCoeficiente(), b.getExponente(), aux.buscaInsertar(b.getCoeficiente(), b.getExponente()));
+                b = b.getLiga();
+            }
+        }
+        return aux;
+    }
+    
+    Nodo buscaInsertar(int c, int e) {
         Nodo p;
         Nodo q;
         p= primerNodo();
         q = anterior(p);
         
-        while(!finRecorrido(p) && p.retornaExponente() < e) {
+        while(!finRecorrido(p) && p.getExponente() < e) {
             q = p;
-            p = p.retornaLiga();
+            p = p.getLiga();
         }
         
         return q;
     }
     
-    public void insertar(int s, int c, int e, Nodo y) {
+    public void insertar(int c, int e, Nodo y) {
         Nodo x;
-        x = new Nodo(s, c, e);
+        x = new Nodo( c, e);
         conectar(x,y);
     }
 
 
     private void conectar(Nodo x, Nodo y) {
         if (y != null) {
-            x.asignaLiga(y.retornaLiga());
-            y.asignaLiga(x);
+            x.setLiga(y.getLiga());
+            y.setLiga(x);
             if( y == ultimo) {
                 ultimo = x;
             }
         } else {
-            x.asignaLiga(primero);
+            x.setLiga(primero);
             if(primero == null) {
                 ultimo = x;
             }
@@ -83,12 +113,12 @@ public class ListaSimple {
         }
     }
     
-    public Nodo buscarDato(int s, int c, int e, Nodo y) {
+    public Nodo buscarDato(int c, int e, Nodo y) {
         Nodo x = primerNodo();
         y = anterior(x);
-        while (!finRecorrido(x) && x.retornaExponente() != e) {
+        while (!finRecorrido(x) && x.getExponente() != e) {
             y = x;
-            x = x.retornaLiga();
+            x = x.getLiga();
         }
         return x;
     }
@@ -102,12 +132,12 @@ public class ListaSimple {
 
     private void desconectar(Nodo x, Nodo y) {
         if (x != primero) {
-            y.asignaLiga(x.retornaLiga());
+            y.setLiga(x.getLiga());
             if(x == ultimo) {
                 ultimo = y;
             }
         } else {
-            primero = primero.retornaLiga();
+            primero = primero.getLiga();
             if(primero == null) {
                 ultimo = null;
             }
@@ -122,9 +152,8 @@ public class ListaSimple {
         
         while(p != x) {
             q = p;
-            p = p.retornaLiga();
+            p = p.getLiga();
         }
         return q;
     }
-
 }

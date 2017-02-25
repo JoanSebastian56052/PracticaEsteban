@@ -5,55 +5,43 @@
  */
 package practica1;
 
-/**
- *
- * @author joan.morales
- */
 public class Nodo {
     
     
     private Nodo liga;
-    private int exp;
-    private int coe;
-    private int signo;
+    private int exp = 0;
+    private int coe = 0;
     
     
-    public Nodo(int s, int c, int e) {
-        signo = s;
+    public Nodo(int c, int e) {
+        
         coe = c;
         exp = e;
         liga = null;
     }
     
-    public int retornaExponente() {
+    public int getExponente() {
         return exp;
     }
     
-    public int retornaCoeficiente() {
+    public int getCoeficiente() {
         return coe;
     }
+
     
-    public int retornaSigno() {
-        return signo;
-    }
-    
-    public Nodo retornaLiga() {
+    public Nodo getLiga() {
         return liga;
     }
     
-    public void asignaExponente(int e) {
+    public void setExponente(int e) {
         exp = e;
     }
     
-    public void asignaCoeficiente(int c) {
+    public void setCoeficiente(int c) {
         coe = c;
     }
-    
-    public void asignaSigno(int s) {
-        signo = s;
-    }
-    
-    public void asignaLiga(Nodo x) {
+  
+    public void setLiga(Nodo x) {
         liga = x;
     }
 }
