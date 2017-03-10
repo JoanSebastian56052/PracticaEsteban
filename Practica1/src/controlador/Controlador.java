@@ -31,12 +31,7 @@ public class Controlador implements ActionListener {
         this.vistaPoli.btnAccion.addActionListener(this);
         
     }
-//    public class CrearJTextField extends JFrame{
-//        JTextField input = new JTextField("texto por defecto",20);
-//        CrearJTextField().setLayout(new FlowLayout());
-//        vistaPoli.panelPoli.add(input);
-//        
-//    }
+
 
     
     @Override
@@ -45,20 +40,31 @@ public class Controlador implements ActionListener {
             switch (vistaPoli.cbOpciones.getSelectedIndex()) {
                 //Determinar Polinomio
                 case 1:
-                    
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    vistaPoli.txtPol2.setEditable(true);
+                    //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese c");
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Determinar");
                     vistaPoli.btnAccion.setVisible(true);
                     
+                    
                 break;
                 
                 //Sumar Polinomios
                 case 2:
-                    
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    vistaPoli.txtPol2.setEditable(true);
+                    //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -69,8 +75,13 @@ public class Controlador implements ActionListener {
                 
                 //Multiplicar Polinomios 
                 case 3:
-                    
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    vistaPoli.txtPol2.setEditable(true);
+                    //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -81,8 +92,13 @@ public class Controlador implements ActionListener {
                 
                 //Determinar P(x)
                 case 4:
-                    
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    vistaPoli.txtPol2.setEditable(true);
+                    //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese P(x)");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -93,17 +109,28 @@ public class Controlador implements ActionListener {
                 
                 //Primera derivada
                 case 5:
-                     
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    //------------------------------
+                    vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Primera derivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    //Inicio código o implemenacion de métodos
                      
                 break;
                 
                 //Enesima derivada
                 case 6:
-                     
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    //------------------------------
+                    vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Enésima derivada");
@@ -112,7 +139,12 @@ public class Controlador implements ActionListener {
                 
                 //Antiderivada
                 case 7:
-                    
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    //------------------------------
+                    vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Antiderivada");
@@ -121,8 +153,13 @@ public class Controlador implements ActionListener {
                 
                 //Integral definida
                 case 8:
-                    //Pedir a y b
-                    //Hacer visibles los txt
+                    //Restablecer las variables por si el usuario quiere realizar otra operación
+                    vistaPoli.Resultado.setVisible(false);
+                    vistaPoli.txtPol2.setText("");
+                    vistaPoli.txtPol2.setEditable(true);
+                    //------------------------------
+                    vistaPoli.PoliUser.setVisible(true);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPolAux.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese a");
