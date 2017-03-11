@@ -19,6 +19,10 @@ public class Nodo {
         exp = e;
         liga = null;
     }
+    public Nodo(int e){
+        exp = e;
+        liga = null;
+    }
     
     public int getExponente() {
         return exp;

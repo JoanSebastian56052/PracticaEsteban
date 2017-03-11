@@ -115,7 +115,8 @@ public class Controlador implements ActionListener {
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
-                    vistaPoli.txtPol2.setVisible(true);
+                    vistaPoli.jLabelPoli2.setVisible(false);
+                    vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Primera derivada");
                     vistaPoli.btnAccion.setVisible(true);
@@ -131,7 +132,8 @@ public class Controlador implements ActionListener {
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
-                    vistaPoli.txtPol2.setVisible(true);
+                    vistaPoli.jLabelPoli2.setVisible(false);
+                    vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Enésima derivada");
                     vistaPoli.btnAccion.setVisible(true);
@@ -145,7 +147,7 @@ public class Controlador implements ActionListener {
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
-                    vistaPoli.txtPol2.setVisible(true);
+                    vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Antiderivada");
                     vistaPoli.btnAccion.setVisible(true);

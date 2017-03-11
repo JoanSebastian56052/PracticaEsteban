@@ -6,7 +6,7 @@
 package modelo;
 
 public class ListaSimple {
-    
+    private Nodo cabeza;
     private Nodo primero;
     private Nodo ultimo;
     private double evaluar;
@@ -19,6 +19,7 @@ public class ListaSimple {
     public ListaSimple() {
         primero = null;
         ultimo = null;
+        cabeza.setLiga(primero);
     }
     
     public boolean esVacia() {
@@ -27,7 +28,9 @@ public class ListaSimple {
         }
         return false;
     }
-    
+    public Nodo cabeza(){
+        return cabeza;
+    }    
     public Nodo primerNodo() {
         return primero;
     }
