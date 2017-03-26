@@ -32,11 +32,99 @@ public class Controlador implements ActionListener {
         
     }
 
+    public String sinEspacios(String polinomio){
+        String aux = "";
+        char espacio = ' ';
+        for(int i = 0; i < polinomio.length(); i++){
+            if(polinomio.charAt(i) != espacio){
+                aux = aux + polinomio.charAt(i);
+            }
+        }
+        
+        return aux;
+    }
+        
+    public ListaSimple toList(String polinomio){ 
+        String auxC="";
+        String auxE="0";
+        ListaSimple pol = new ListaSimple();
+        Nodo aux = new Nodo(0,0);
+        aux.setLiga(null);
+        boolean coe = true;
+        boolean exp = false;
+        for(int i = 0; i < polinomio.length(); i++) {
+            switch(polinomio.charAt(i)) {
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case '0':
+                    if(coe) {
+                        auxC=auxC+polinomio.charAt(i);
+                    } else if (exp) {
+                        auxE = auxE + polinomio.charAt(i);
+                    }
+                    break;
+                case 'x':
+                    if(i > 0 ){
+                        if(polinomio.charAt(i-1) == '-') {
+                            auxC =auxC + "1";
+                        }
+                        if(i >= polinomio.length()-1) {
+                            auxE = auxE + "1";
+                        }
+                    } else if(i==0) {
+                        auxC = auxC + "1";
+                        if(i+1 == polinomio.length()) {
+                            auxE = auxE + "1";
+                        }                       
+                    }
+                    coe = false;
+                    exp = true;
+                    break;
+                case '+':
+                case '-':
+                    if(i > 0 ){
+                        if(polinomio.charAt(i-1) == 'x') {
+                            auxE = "1";
+                        }                       
+                    }
+                    if(exp) {                       
+                        pol.insertar(Integer.parseInt(auxC), Integer.parseInt(auxE), aux);
+                        System.out.println(auxC);
+                        aux.setCoeficiente(Integer.parseInt(auxC));
+                        aux.setExponente(Integer.parseInt(auxE));
+                        System.out.println(auxC+"x"+auxE);
+                        auxC = "";
+                        auxC=auxC+polinomio.charAt(i); 
+                        auxE = "0";                       
+                    } else {
+                        auxC=auxC+polinomio.charAt(i);                       
+                    }
+                    coe = true;
+                    exp = false;
+                    break;
+            }
+            
+        }        
+        pol.insertar(Integer.parseInt(auxC), Integer.parseInt(auxE), aux);
+        System.out.println(auxC+"x"+auxE);
+        String cualquiera = pol.mostrar();
+        System.out.println("mi lista" + cualquiera);
+        return pol;
+    }
 
     
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == vistaPoli.cbOpciones){
+            String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
+            toList(aux1);
             switch (vistaPoli.cbOpciones.getSelectedIndex()) {
                 //Determinar Polinomio
                 case 1:
@@ -46,7 +134,7 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setEditable(true);
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese c");
                     vistaPoli.jLabelPoli2.setVisible(true);

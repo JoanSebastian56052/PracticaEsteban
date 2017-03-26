@@ -49,9 +49,20 @@ public class Polinomios extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtPol1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPol1ActionPerformed(evt);
+            }
+        });
+
         btnBorrar.setText("Borrar");
 
         cbOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Evaluar P(c)", "Suma", "Multiplicación", "Determinar", "1ra Derivada", "n-ma Derivada", "Antiderivada", "Integral definida" }));
+        cbOpciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbOpcionesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Polinomios");
 
@@ -168,6 +179,15 @@ public class Polinomios extends javax.swing.JFrame {
     private void txtPol2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPol2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPol2ActionPerformed
+
+    private void txtPol1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPol1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPol1ActionPerformed
+
+    private void cbOpcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbOpcionesActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cbOpcionesActionPerformed
 
     /**
      * @param args the command line arguments

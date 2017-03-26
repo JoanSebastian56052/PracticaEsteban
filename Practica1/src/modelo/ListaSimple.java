@@ -19,14 +19,11 @@ public class ListaSimple {
     public ListaSimple() {
         primero = null;
         ultimo = null;
-        cabeza.setLiga(primero);
+        //cabeza.setLiga(primero);
     }
     
     public boolean esVacia() {
-        if (primero == null) {
-            return true;
-        }
-        return false;
+        return primero == null;
     }
     public Nodo cabeza(){
         return cabeza;
@@ -39,13 +36,13 @@ public class ListaSimple {
         return ultimo;
     }
     
-    public boolean finRecorrido(Nodo x) {
-        if(x == null) {
-            return true;
-        }
-        return false;
+    public boolean finRecorrido(Nodo x) {        
+        return x  == null;
     }
-    
+    public Nodo CrearCabeza(int exponente){
+        cabeza = new Nodo(0, exponente);
+        return cabeza;
+    }
     public double recorre(double v) {
         Nodo p;
         p = primerNodo();
@@ -62,6 +59,7 @@ public class ListaSimple {
     public ListaSimple sumaPolinomios(ListaSimple p, ListaSimple q) {
         a = p.primerNodo();
         b= q.primerNodo();
+        ListaSimple suma = new ListaSimple();
         
         while ((a.getExponente() != 0) || (b.getExponente() != 0)) {
             if(a.getExponente() == b.getExponente()) {
@@ -98,7 +96,21 @@ public class ListaSimple {
         x = new Nodo( c, e);
         conectar(x,y);
     }
-
+    public ListaSimple insertarNodo(int c, int e, ListaSimple ls){
+        Nodo nuevo = new Nodo(c,e);
+        if(ls.esVacia()){
+            primero = nuevo;
+            
+        }else{
+            Nodo auxiliar = ls.primerNodo();
+            while(auxiliar.getLiga() != null){
+                auxiliar = auxiliar.getLiga();                
+            }
+            auxiliar.setLiga(nuevo);
+        }
+        return ls;
+    }
+    
 
     private void conectar(Nodo x, Nodo y) {
         if (y != null) {
@@ -159,4 +171,15 @@ public class ListaSimple {
         }
         return q;
     }
+    
+    public String mostrar(){
+        Nodo cambielo = this.primerNodo();
+        System.out.println(cambielo.getCoeficiente() + "x" + cambielo.getExponente());
+        String paraMostrar = "";
+        while(cambielo.getLiga() != null){
+            paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente();
+            cambielo = cambielo.getLiga();
+        }
+        return paraMostrar;
+    }   
 }
