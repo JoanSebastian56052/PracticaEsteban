@@ -31,7 +31,8 @@ public class Controlador implements ActionListener {
         this.vistaPoli.btnAccion.addActionListener(this);
         
     }
-
+    
+    //metodo para quitar los espacios al string ingresado
     public String sinEspacios(String polinomio){
         String aux = "";
         char espacio = ' ';
@@ -43,16 +44,22 @@ public class Controlador implements ActionListener {
         
         return aux;
     }
-        
+    
+    //metodo para listar el polinomio 
     public ListaSimple toList(String polinomio){ 
-        String auxC="";
-        String auxE="0";
-        ListaSimple pol = new ListaSimple();
+        String auxC=""; //auxiliar coeficiente para detectar el coeficiente correspondiente a cada monomio
+        String auxE="0"; //auxiliar exponente para detectar el coeficiente correspondiente a cada monomio
+        ListaSimple pol = new ListaSimple(); 
         Nodo aux = new Nodo(0,0);
         aux.setLiga(null);
-        boolean coe = true;
+        //variable coe y exp para saber si el numero es un coeficiente o exponente
+        boolean coe = true; 
         boolean exp = false;
+        //recorremos todo el polinomio 
         for(int i = 0; i < polinomio.length(); i++) {
+            //detectaremos los posibles caracteres que se encontrará, dependiendo de cada caracter,
+            //se sabrá si es coeficiente, exponente, variable 'x' y su correspondiente signo
+            //al detectar cada monomio se listará.
             switch(polinomio.charAt(i)) {
                 case '1':
                 case '2':
@@ -95,7 +102,7 @@ public class Controlador implements ActionListener {
                         }                       
                     }
                     if(exp) {                       
-                        pol.insertar(Integer.parseInt(auxC), Integer.parseInt(auxE), aux);
+                        pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
                         System.out.println(auxC);
                         aux.setCoeficiente(Integer.parseInt(auxC));
                         aux.setExponente(Integer.parseInt(auxE));
@@ -112,7 +119,7 @@ public class Controlador implements ActionListener {
             }
             
         }        
-        pol.insertar(Integer.parseInt(auxC), Integer.parseInt(auxE), aux);
+        pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
         System.out.println(auxC+"x"+auxE);
         String cualquiera = pol.mostrar();
         System.out.println("mi lista" + cualquiera);

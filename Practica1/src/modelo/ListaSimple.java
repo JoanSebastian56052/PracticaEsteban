@@ -19,7 +19,8 @@ public class ListaSimple {
     public ListaSimple() {
         primero = null;
         ultimo = null;
-        //cabeza.setLiga(primero);
+        cabeza = null;
+        cabeza.setLiga(primero);
     }
     
     public boolean esVacia() {
@@ -43,7 +44,7 @@ public class ListaSimple {
         cabeza = new Nodo(0, exponente);
         return cabeza;
     }
-    public double recorre(double v) {
+    public double evalua(double v) {
         Nodo p;
         p = primerNodo();
         
@@ -91,27 +92,25 @@ public class ListaSimple {
         return q;
     }
     
+    public void insertarNodo(int c, int e){
+        Nodo nuevo = new Nodo(c,e);
+        if(this.esVacia()){
+            this.primero = nuevo;
+            this.ultimo = nuevo;
+            
+        }else{
+            auxiliar = this.ultimoNodo();              
+            auxiliar.setLiga(nuevo);
+            this.ultimo = nuevo;
+        } 
+    }
+    
     public void insertar(int c, int e, Nodo y) {
         Nodo x;
         x = new Nodo( c, e);
         conectar(x,y);
     }
-    public ListaSimple insertarNodo(int c, int e, ListaSimple ls){
-        Nodo nuevo = new Nodo(c,e);
-        if(ls.esVacia()){
-            primero = nuevo;
-            
-        }else{
-            Nodo auxiliar = ls.primerNodo();
-            while(auxiliar.getLiga() != null){
-                auxiliar = auxiliar.getLiga();                
-            }
-            auxiliar.setLiga(nuevo);
-        }
-        return ls;
-    }
     
-
     private void conectar(Nodo x, Nodo y) {
         if (y != null) {
             x.setLiga(y.getLiga());
@@ -125,37 +124,6 @@ public class ListaSimple {
                 ultimo = x;
             }
             primero = x;
-        }
-    }
-    
-    public Nodo buscarDato(int c, int e, Nodo y) {
-        Nodo x = primerNodo();
-        y = anterior(x);
-        while (!finRecorrido(x) && x.getExponente() != e) {
-            y = x;
-            x = x.getLiga();
-        }
-        return x;
-    }
-    
-    public void borrar(Nodo x, Nodo y) {
-        if (x == null) {
-            return;
-        }
-        desconectar(x, y);
-    }
-
-    private void desconectar(Nodo x, Nodo y) {
-        if (x != primero) {
-            y.setLiga(x.getLiga());
-            if(x == ultimo) {
-                ultimo = y;
-            }
-        } else {
-            primero = primero.getLiga();
-            if(primero == null) {
-                ultimo = null;
-            }
         }
     }
     
@@ -174,12 +142,46 @@ public class ListaSimple {
     
     public String mostrar(){
         Nodo cambielo = this.primerNodo();
-        System.out.println(cambielo.getCoeficiente() + "x" + cambielo.getExponente());
+        
         String paraMostrar = "";
-        while(cambielo.getLiga() != null){
+        while(!finRecorrido(cambielo)){
+            System.out.println(cambielo.getCoeficiente() + "x" + cambielo.getExponente());
             paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente();
             cambielo = cambielo.getLiga();
         }
+         System.out.println(paraMostrar);
         return paraMostrar;
-    }   
+    }  
+    
+    private void desconectar(Nodo x, Nodo y) {
+        if (x != primero) {
+            y.setLiga(x.getLiga());
+            if(x == ultimo) {
+                ultimo = y;
+            }
+        } else {
+            primero = primero.getLiga();
+            if(primero == null) {
+                ultimo = null;
+            }
+        }
+    }
+    
+    public void borrar(Nodo x, Nodo y) {
+        if (x == null) {
+            return;
+        }
+        desconectar(x, y);
+    }
+    
+    public Nodo buscarDato(int c, int e, Nodo y) {
+        Nodo x = primerNodo();
+        y = anterior(x);
+        while (!finRecorrido(x) && x.getExponente() != e) {
+            y = x;
+            x = x.getLiga();
+        }
+        return x;
+    }
+    
 }
