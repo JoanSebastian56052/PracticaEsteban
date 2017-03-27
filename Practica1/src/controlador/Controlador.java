@@ -50,14 +50,12 @@ public class Controlador implements ActionListener {
         String auxC=""; //auxiliar coeficiente para detectar el coeficiente correspondiente a cada monomio
         String auxE="0"; //auxiliar exponente para detectar el coeficiente correspondiente a cada monomio
         ListaSimple pol = new ListaSimple(); 
-        Nodo aux = new Nodo(0,0);
-        aux.setLiga(null);
         //variable coe y exp para saber si el numero es un coeficiente o exponente
         boolean coe = true; 
         boolean exp = false;
         //recorremos todo el polinomio 
         for(int i = 0; i < polinomio.length(); i++) {
-            //detectaremos los posibles caracteres que se encontrará, dependiendo de cada caracter,
+            //Detectaremos los posibles caracteres que se encontrará, dependiendo de cada caracter,
             //se sabrá si es coeficiente, exponente, variable 'x' y su correspondiente signo
             //al detectar cada monomio se listará.
             switch(polinomio.charAt(i)) {
@@ -104,8 +102,6 @@ public class Controlador implements ActionListener {
                     if(exp) {                       
                         pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
                         System.out.println(auxC);
-                        aux.setCoeficiente(Integer.parseInt(auxC));
-                        aux.setExponente(Integer.parseInt(auxE));
                         System.out.println(auxC+"x"+auxE);
                         auxC = "";
                         auxC=auxC+polinomio.charAt(i); 
@@ -121,17 +117,17 @@ public class Controlador implements ActionListener {
         }        
         pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
         System.out.println(auxC+"x"+auxE);
-        String cualquiera = pol.mostrar();
-        System.out.println("mi lista" + cualquiera);
+         System.out.println("mi lista es: "+ pol.mostrar());
         return pol;
     }
 
     
     @Override
     public void actionPerformed(ActionEvent e){
+        String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
+        ListaSimple list = toList(aux1);
+
         if(e.getSource() == vistaPoli.cbOpciones){
-            String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
-            toList(aux1);
             switch (vistaPoli.cbOpciones.getSelectedIndex()) {
                 //Determinar Polinomio
                 case 1:
@@ -272,8 +268,7 @@ public class Controlador implements ActionListener {
             }
         }
         if(e.getSource()== vistaPoli.btnAccion){
-            
-           
+            list.evalua(2);
             vistaPoli.btnAccion.setVisible(false);
             vistaPoli.PoliUser.setVisible(false);
             vistaPoli.txtPolAux.setVisible(false);
@@ -281,7 +276,7 @@ public class Controlador implements ActionListener {
             vistaPoli.jLabelPoli2.setVisible(false);
             
             vistaPoli.Resultado.setVisible(true);
-            vistaPoli.txtPol2.setText("Resultado"); //resultado según el case
+            vistaPoli.txtPol2.setText(Double.toString(list.evalua(2))); //resultado según el case
             vistaPoli.txtPol2.setEditable(false);
         }
         if(e.getSource() == vistaPoli.btnBorrar){

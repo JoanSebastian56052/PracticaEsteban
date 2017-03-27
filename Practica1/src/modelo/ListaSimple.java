@@ -20,7 +20,6 @@ public class ListaSimple {
         primero = null;
         ultimo = null;
         cabeza = null;
-        cabeza.setLiga(primero);
     }
     
     public boolean esVacia() {
@@ -45,14 +44,18 @@ public class ListaSimple {
         return cabeza;
     }
     public double evalua(double v) {
-        Nodo p;
-        p = primerNodo();
+        Nodo p = primerNodo();
         
-        while(!finRecorrido(p)) {
+        Nodo q = ultimoNodo();
+        //System.out.println(p.getLiga() + " " + p.getExponente() + " " + p.getCoeficiente() + " " + q.getLiga() + " " + q.getExponente() + " " + q.getCoeficiente());
+        while(!finRecorrido(p) || (primerNodo() == ultimoNodo())){ 
             evaluar = p.getCoeficiente();
+            System.out.println("con coeficiente: " + evaluar);
             evaluar = evaluar * (double)Math.pow(v, p.getExponente());
+            System.out.println("al ser elevado y multiplicado: " + evaluar);
             total = total + evaluar;
             p = p.getLiga();
+            
         }
         return (total);
     }
@@ -95,9 +98,10 @@ public class ListaSimple {
     public void insertarNodo(int c, int e){
         Nodo nuevo = new Nodo(c,e);
         if(this.esVacia()){
+            cabeza =  CrearCabeza(e);
             this.primero = nuevo;
+            this.cabeza.setLiga(primero);
             this.ultimo = nuevo;
-            
         }else{
             auxiliar = this.ultimoNodo();              
             auxiliar.setLiga(nuevo);
