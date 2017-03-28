@@ -19,7 +19,8 @@ public class ListaSimple {
     public ListaSimple() {
         primero = null;
         ultimo = null;
-        cabeza = null;
+        cabeza = new Nodo(0,0);
+        cabeza.setLiga(primero);
     }
     
     public boolean esVacia() {
@@ -39,10 +40,10 @@ public class ListaSimple {
     public boolean finRecorrido(Nodo x) {        
         return x  == null;
     }
-    public Nodo CrearCabeza(int exponente){
-        cabeza = new Nodo(0, exponente);
-        return cabeza;
-    }
+//    public Nodo CrearCabeza(int exponente){
+//        cabeza = new Nodo(0, exponente);
+//        return cabeza;
+//    }
     public double evalua(double v) {
         Nodo p = primerNodo();
         
@@ -98,11 +99,12 @@ public class ListaSimple {
     public void insertarNodo(int c, int e){
         Nodo nuevo = new Nodo(c,e);
         if(this.esVacia()){
-            cabeza =  CrearCabeza(e);
+            this.cabeza.setExponente(e);
+            this.cabeza.setCoeficiente(this.cabeza.getCoeficiente()+1);
             this.primero = nuevo;
-            this.cabeza.setLiga(primero);
             this.ultimo = nuevo;
         }else{
+            this.cabeza.setCoeficiente(this.cabeza.getCoeficiente()+1);
             auxiliar = this.ultimoNodo();              
             auxiliar.setLiga(nuevo);
             this.ultimo = nuevo;
@@ -146,14 +148,15 @@ public class ListaSimple {
     
     public String mostrar(){
         Nodo cambielo = this.primerNodo();
-        
+        Nodo cabezon = this.cabeza();
+
         String paraMostrar = "";
         while(!finRecorrido(cambielo)){
             System.out.println(cambielo.getCoeficiente() + "x" + cambielo.getExponente());
             paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente();
             cambielo = cambielo.getLiga();
         }
-         System.out.println(paraMostrar);
+        System.out.println(paraMostrar + " y mi cabeza es: " + cabezon.getCoeficiente() + " " +  cabezon.getExponente());
         return paraMostrar;
     }  
     
