@@ -55,6 +55,7 @@ public class Controlador implements ActionListener {
         boolean exp = false;
         //recorremos todo el polinomio 
         for(int i = 0; i < polinomio.length(); i++) {
+            System.out.println(polinomio.charAt(i));
             //Detectaremos los posibles caracteres que se encontrará, dependiendo de cada caracter,
             //se sabrá si es coeficiente, exponente, variable 'x' y su correspondiente signo
             //al detectar cada monomio se listará.
@@ -69,6 +70,7 @@ public class Controlador implements ActionListener {
                 case '8':
                 case '9':
                 case '0':
+                case '.':
                     if(coe) {
                         auxC=auxC+polinomio.charAt(i);
                     } else if (exp) {
@@ -77,7 +79,7 @@ public class Controlador implements ActionListener {
                     break;
                 case 'x':
                     if(i > 0 ){
-                        if(polinomio.charAt(i-1) == '-') {
+                        if( polinomio.charAt(i-1) == '-' || polinomio.charAt(i-1) == '+') {
                             auxC =auxC + "1";
                         }
                         if(i >= polinomio.length()-1) {
@@ -100,7 +102,7 @@ public class Controlador implements ActionListener {
                         }                       
                     }
                     if(exp) {                       
-                        pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
+                        pol.insertarNodo(Float.parseFloat(auxC), Integer.parseInt(auxE));
                         System.out.println(auxC);
                         System.out.println(auxC+"x"+auxE);
                         auxC = "";
@@ -115,7 +117,7 @@ public class Controlador implements ActionListener {
             }
             
         }        
-        pol.insertarNodo(Integer.parseInt(auxC), Integer.parseInt(auxE));
+        pol.insertarNodo(Float.parseFloat(auxC), Integer.parseInt(auxE));
         System.out.println(auxC+"x"+auxE);
          System.out.println("mi lista es: "+ pol.mostrar());
         return pol;
@@ -268,7 +270,7 @@ public class Controlador implements ActionListener {
             }
         }
         if(e.getSource()== vistaPoli.btnAccion){
-            list.evalua(2);
+            
             vistaPoli.btnAccion.setVisible(false);
             vistaPoli.PoliUser.setVisible(false);
             vistaPoli.txtPolAux.setVisible(false);
@@ -276,7 +278,7 @@ public class Controlador implements ActionListener {
             vistaPoli.jLabelPoli2.setVisible(false);
             
             vistaPoli.Resultado.setVisible(true);
-            vistaPoli.txtPol2.setText(Double.toString(list.evalua(2))); //resultado según el case
+            vistaPoli.txtPol2.setText(Float.toString(list.evalua(2))); //resultado según el case
             vistaPoli.txtPol2.setEditable(false);
         }
         if(e.getSource() == vistaPoli.btnBorrar){

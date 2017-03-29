@@ -10,10 +10,10 @@ public class Nodo {
     
     private Nodo liga;
     private int exp = 0;
-    private int coe = 0;
+    private float coe = 0;
     
     
-    public Nodo(int c, int e) {
+    public Nodo(float c, int e) {
         
         coe = c;
         exp = e;
@@ -24,7 +24,7 @@ public class Nodo {
         return exp;
     }
     
-    public int getCoeficiente() {
+    public float getCoeficiente() {
         return coe;
     }
 
@@ -37,7 +37,7 @@ public class Nodo {
         exp = e;
     }
     
-    public void setCoeficiente(int c) {
+    public void setCoeficiente(float c) {
         coe = c;
     }
   

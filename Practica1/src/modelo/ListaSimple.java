@@ -9,8 +9,8 @@ public class ListaSimple {
     private Nodo cabeza;
     private Nodo primero;
     private Nodo ultimo;
-    private double evaluar;
-    private double total = 0;
+    private float evaluar;
+    private float total = 0;
     private ListaSimple aux;
     private Nodo auxiliar;
     private Nodo a;
@@ -44,16 +44,13 @@ public class ListaSimple {
 //        cabeza = new Nodo(0, exponente);
 //        return cabeza;
 //    }
-    public double evalua(double v) {
+    public float evalua(float v) {
         Nodo p = primerNodo();
-        
+        total = 0; evaluar = 0;
         Nodo q = ultimoNodo();
-        //System.out.println(p.getLiga() + " " + p.getExponente() + " " + p.getCoeficiente() + " " + q.getLiga() + " " + q.getExponente() + " " + q.getCoeficiente());
-        while(!finRecorrido(p) || (primerNodo() == ultimoNodo())){ 
+        while(!finRecorrido(p)){ 
             evaluar = p.getCoeficiente();
-            System.out.println("con coeficiente: " + evaluar);
-            evaluar = evaluar * (double)Math.pow(v, p.getExponente());
-            System.out.println("al ser elevado y multiplicado: " + evaluar);
+            evaluar = evaluar * (float)Math.pow(v, p.getExponente());
             total = total + evaluar;
             p = p.getLiga();
             
@@ -82,7 +79,7 @@ public class ListaSimple {
         return aux;
     }
     
-    Nodo buscaInsertar(int c, int e) {
+    Nodo buscaInsertar(float c, int e) {
         Nodo p;
         Nodo q;
         p= primerNodo();
@@ -96,7 +93,7 @@ public class ListaSimple {
         return q;
     }
     
-    public void insertarNodo(int c, int e){
+    public void insertarNodo(float c, int e){
         Nodo nuevo = new Nodo(c,e);
         if(this.esVacia()){
             this.cabeza.setExponente(e);
@@ -104,6 +101,9 @@ public class ListaSimple {
             this.primero = nuevo;
             this.ultimo = nuevo;
         }else{
+            if(this.cabeza.getExponente() < e){
+                this.cabeza.setExponente(e);
+            }
             this.cabeza.setCoeficiente(this.cabeza.getCoeficiente()+1);
             auxiliar = this.ultimoNodo();              
             auxiliar.setLiga(nuevo);
@@ -111,7 +111,7 @@ public class ListaSimple {
         } 
     }
     
-    public void insertar(int c, int e, Nodo y) {
+    public void insertar(float c, int e, Nodo y) {
         Nodo x;
         x = new Nodo( c, e);
         conectar(x,y);
@@ -152,8 +152,7 @@ public class ListaSimple {
 
         String paraMostrar = "";
         while(!finRecorrido(cambielo)){
-            System.out.println(cambielo.getCoeficiente() + "x" + cambielo.getExponente());
-            paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente();
+            paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente() + " ";
             cambielo = cambielo.getLiga();
         }
         System.out.println(paraMostrar + " y mi cabeza es: " + cabezon.getCoeficiente() + " " +  cabezon.getExponente());
@@ -181,7 +180,7 @@ public class ListaSimple {
         desconectar(x, y);
     }
     
-    public Nodo buscarDato(int c, int e, Nodo y) {
+    public Nodo buscarDato(float c, int e, Nodo y) {
         Nodo x = primerNodo();
         y = anterior(x);
         while (!finRecorrido(x) && x.getExponente() != e) {
