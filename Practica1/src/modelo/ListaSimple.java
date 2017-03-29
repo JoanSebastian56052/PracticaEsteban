@@ -15,6 +15,7 @@ public class ListaSimple {
     private Nodo auxiliar;
     private Nodo a;
     private Nodo b;
+    private Nodo c;
     
     public ListaSimple() {
         primero = null;
@@ -103,6 +104,37 @@ public class ListaSimple {
         return valor;
     } 
     
+    public ListaSimple multiplcacion (ListaSimple p, ListaSimple q){
+        a = p.primerNodo();
+        b= q.primerNodo();
+        ListaSimple aux2 = new ListaSimple();
+        
+        while(!finRecorrido(a)){ 
+            
+            while(!finRecorrido(b)){
+                c.setCoeficiente(a.getCoeficiente()*b.getCoeficiente());
+                c.setExponente(a.getExponente()+b.getExponente());
+                aux.insertar(c.getCoeficiente(), c.getExponente(), aux.buscaInsertar(c.getCoeficiente(), c.getExponente()));
+                b.getLiga();
+            }
+            a.getLiga();
+            aux2 = sumaPolinomios(aux, aux2);
+        }
+        return aux2;
+    }
+    
+    public ListaSimple derivada(ListaSimple p){
+         a = p.primerNodo();
+         b = p.ultimoNodo();
+         while(a!=b){
+             c.setCoeficiente(a.getCoeficiente()*a.getExponente());
+             c.setExponente(a.getExponente()-1);
+             aux.insertar(c.getCoeficiente(), c.getExponente(), aux.buscaInsertar(c.getCoeficiente(), c.getExponente()));
+             a.getLiga();
+         }
+         return aux;
+    }
+
     Nodo buscaInsertar(float c, int e) {
         Nodo p;
         Nodo q;

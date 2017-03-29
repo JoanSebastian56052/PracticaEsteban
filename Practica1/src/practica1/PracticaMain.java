@@ -6,6 +6,7 @@
 package practica1;
 
 import controlador.Controlador;
+import modelo.ListaSimple;
 import vista.Polinomios;
 
 /**
@@ -26,7 +27,7 @@ public class PracticaMain {
         
         vistaPoli.setVisible(true);
         
-        //Botones y Lebels visibles
+//        Botones y Lebels visibles
         vistaPoli.txtPol2.setVisible(false);
         vistaPoli.btnAccion.setVisible(false);
         vistaPoli.PoliUser.setVisible(false);
@@ -37,7 +38,7 @@ public class PracticaMain {
         
         
         vistaPoli.setLocationRelativeTo(null);
-        System.out.println("Algo más");
+        
     }
     
 }
