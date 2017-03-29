@@ -78,6 +78,30 @@ public class ListaSimple {
         }
         return aux;
     }
+    public ListaSimple integral(){
+        a= this.primerNodo();
+        
+        ListaSimple integrada = new ListaSimple();
+
+        integrada.cabeza = this.cabeza();
+        integrada.cabeza.setCoeficiente(0);
+        while(!finRecorrido(a)){
+            
+            int newexp = a.getExponente()+1;
+            
+            float newcoe = a.getCoeficiente()/newexp;
+            integrada.insertarNodo(newcoe,newexp);
+            
+            a= a.getLiga();
+        }
+        return integrada;
+    }
+    
+    public float integralDef(float a, float b){
+        ListaSimple integrarla = this.integral();
+        float valor = integrarla.evalua(a) - integrarla.evalua(b);
+        return valor;
+    } 
     
     Nodo buscaInsertar(float c, int e) {
         Nodo p;
@@ -96,21 +120,20 @@ public class ListaSimple {
     public void insertarNodo(float c, int e){
         Nodo nuevo = new Nodo(c,e);
         if(this.esVacia()){
-            this.cabeza.setExponente(e);
-            this.cabeza.setCoeficiente(this.cabeza.getCoeficiente()+1);
-            this.primero = nuevo;
-            this.ultimo = nuevo;
+            cabeza.setExponente(e);
+            cabeza.setCoeficiente(cabeza.getCoeficiente()+1);
+            primero = nuevo;
+            ultimo = nuevo;
         }else{
-            if(this.cabeza.getExponente() < e){
-                this.cabeza.setExponente(e);
+            if(cabeza.getExponente() < e){
+                cabeza.setExponente(e);
             }
-            this.cabeza.setCoeficiente(this.cabeza.getCoeficiente()+1);
+            cabeza.setCoeficiente(cabeza.getCoeficiente()+1);
             auxiliar = this.ultimoNodo();              
             auxiliar.setLiga(nuevo);
-            this.ultimo = nuevo;
+            ultimo = nuevo;
         } 
     }
-    
     public void insertar(float c, int e, Nodo y) {
         Nodo x;
         x = new Nodo( c, e);
@@ -129,6 +152,10 @@ public class ListaSimple {
             if(primero == null) {
                 ultimo = x;
             }
+            if(cabeza.getExponente() < x.getExponente()){
+                cabeza.setExponente(x.getExponente());
+            }
+            cabeza.setCoeficiente(cabeza.getCoeficiente()+1);
             primero = x;
         }
     }

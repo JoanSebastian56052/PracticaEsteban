@@ -278,7 +278,7 @@ public class Controlador implements ActionListener {
             vistaPoli.jLabelPoli2.setVisible(false);
             
             vistaPoli.Resultado.setVisible(true);
-            vistaPoli.txtPol2.setText(Float.toString(list.evalua(2))); //resultado según el case
+            vistaPoli.txtPol2.setText(list.integral().mostrar()); //resultado según el case
             vistaPoli.txtPol2.setEditable(false);
         }
         if(e.getSource() == vistaPoli.btnBorrar){
