@@ -9,7 +9,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import vista.*;
+import vista.Polinomios;
 import modelo.*;
 
 /**
@@ -29,6 +29,7 @@ public class Controlador implements ActionListener {
         this.vistaPoli.btnSalir.addActionListener(this);
         this.vistaPoli.cbOpciones.addActionListener(this);
         this.vistaPoli.btnAccion.addActionListener(this);
+        
         
     }
     
@@ -128,6 +129,8 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
         ListaSimple list = toList(aux1);
+        vistaPoli.btnAccion.setVisible(true);
+        this.vistaPoli.btnAccion.setVisible(true);
 
         if(e.getSource() == vistaPoli.cbOpciones){
             switch (vistaPoli.cbOpciones.getSelectedIndex()) {
@@ -145,6 +148,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Determinar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                     
                     
                 break;
@@ -163,6 +168,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Sumar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                     
                 break;
                 
@@ -180,6 +187,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Multiplicar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                     
                 break;
                 
@@ -193,10 +202,12 @@ public class Controlador implements ActionListener {
                     vistaPoli.PoliUser.setVisible(true);
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.txtPol2.setVisible(true);
-                    vistaPoli.jLabelPoli2.setText("Ingrese P(x)");
+                    vistaPoli.jLabelPoli2.setText("Ingrese P(x):");
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Determinar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                     
                 break;
                 
@@ -210,9 +221,10 @@ public class Controlador implements ActionListener {
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
                     vistaPoli.jLabelPoli2.setVisible(false);
                     vistaPoli.txtPol2.setVisible(false);
-                    vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Primera derivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                     //Inicio código o implemenacion de métodos
                      
                 break;
@@ -225,11 +237,14 @@ public class Controlador implements ActionListener {
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
                     vistaPoli.PoliUser.setText("Polinomio ingresado: "+vistaPoli.txtPol1.getText());
-                    vistaPoli.jLabelPoli2.setVisible(false);
-                    vistaPoli.txtPol2.setVisible(false);
-                    vistaPoli.txtPol2.setEditable(false);
+                    vistaPoli.jLabelPoli2.setText("Ingrese N:");
+                    vistaPoli.jLabelPoli2.setVisible(true);
+                    vistaPoli.txtPol2.setVisible(true);
+                    vistaPoli.txtPol2.setEditable(true);
                     vistaPoli.btnAccion.setText("Enésima derivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                 break;
                 
                 //Antiderivada
@@ -244,6 +259,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Antiderivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.jLabelPoliAux.setVisible(false);
+                    vistaPoli.txtPolAux.setVisible(false);
                 break;
                 
                 //Integral definida
@@ -284,7 +301,7 @@ public class Controlador implements ActionListener {
         if(e.getSource() == vistaPoli.btnBorrar){
             
             vistaPoli.txtPol1.setText("");
-            JOptionPane.showMessageDialog(null, "Se restalecerá al polinomio 0 = P(c)");
+            JOptionPane.showMessageDialog(null, "Se restablecerá al polinomio 0 = P(c)");
         }
         if(e.getSource() == vistaPoli.btnSalir){
             JOptionPane.showMessageDialog(null, "Hasta luego");

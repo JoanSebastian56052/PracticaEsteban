@@ -22,12 +22,13 @@ public class PracticaMain {
         // TODO code application logic here
         System.out.println("inicio");
         
+        
         Polinomios vistaPoli = new Polinomios();
         Controlador controlPoli = new Controlador(vistaPoli);
         
         vistaPoli.setVisible(true);
         
-//        Botones y Lebels visibles
+//        Botones y Lebels
         vistaPoli.txtPol2.setVisible(false);
         vistaPoli.btnAccion.setVisible(false);
         vistaPoli.PoliUser.setVisible(false);
