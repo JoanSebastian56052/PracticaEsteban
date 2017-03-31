@@ -59,8 +59,8 @@ public class ListaSimple {
         return (total);
     }
     
-    public ListaSimple sumaPolinomios(ListaSimple p, ListaSimple q) {
-        a = p.primerNodo();
+    public ListaSimple sumaPolinomios(ListaSimple q) {
+        a = this.primerNodo();
         b= q.primerNodo();
         ListaSimple suma = new ListaSimple();
         
@@ -78,6 +78,30 @@ public class ListaSimple {
             }
         }
         return aux;
+    }
+    
+    public ListaSimple multiplcacion(ListaSimple q){
+        a = this.primerNodo();
+        b= q.primerNodo();
+        ListaSimple aux2 = new ListaSimple();
+        
+        while(!finRecorrido(a)){ 
+            
+            while(!finRecorrido(b)){
+                c.setCoeficiente(a.getCoeficiente()*b.getCoeficiente());
+                c.setExponente(a.getExponente()+b.getExponente());
+                aux.insertar(c.getCoeficiente(), c.getExponente(), aux.buscaInsertar(c.getCoeficiente(), c.getExponente()));
+                b.getLiga();
+            }
+            a.getLiga();
+            aux2 = aux.sumaPolinomios(aux2);
+        }
+        return aux2;
+    }
+    public boolean detFactor(float c){
+        boolean isfactor = false;
+            if(this.evalua(c) == 0){isfactor = true;};
+        return isfactor;
     }
     public ListaSimple integral(){
         a= this.primerNodo();
@@ -100,39 +124,42 @@ public class ListaSimple {
     
     public float integralDef(float a, float b){
         ListaSimple integrarla = this.integral();
-        float valor = integrarla.evalua(a) - integrarla.evalua(b);
+        float valor = integrarla.evalua(b) - integrarla.evalua(a);
         return valor;
     } 
     
-    public ListaSimple multiplcacion (ListaSimple p, ListaSimple q){
-        a = p.primerNodo();
-        b= q.primerNodo();
-        ListaSimple aux2 = new ListaSimple();
+    
+    public ListaSimple derivar(){
         
-        while(!finRecorrido(a)){ 
-            
-            while(!finRecorrido(b)){
-                c.setCoeficiente(a.getCoeficiente()*b.getCoeficiente());
-                c.setExponente(a.getExponente()+b.getExponente());
-                aux.insertar(c.getCoeficiente(), c.getExponente(), aux.buscaInsertar(c.getCoeficiente(), c.getExponente()));
-                b.getLiga();
+        a= this.primerNodo();
+        ListaSimple derivada = new ListaSimple();
+
+        derivada.cabeza = this.cabeza();
+        derivada.cabeza.setCoeficiente(0);
+        
+        while(!finRecorrido(a)){
+            int newexp = a.getExponente()-1;
+            if(a.getExponente() <= 0){
+               newexp = a.getExponente();
             }
-            a.getLiga();
-            aux2 = sumaPolinomios(aux, aux2);
+            float newcoe = a.getCoeficiente() * a.getExponente();
+            derivada.insertarNodo(newcoe, newexp);
+            
+            a = a.getLiga();
         }
-        return aux2;
+        return derivada;
     }
     
-    public ListaSimple derivada(ListaSimple p){
-         a = p.primerNodo();
-         b = p.ultimoNodo();
-         while(a!=b){
-             c.setCoeficiente(a.getCoeficiente()*a.getExponente());
-             c.setExponente(a.getExponente()-1);
-             aux.insertar(c.getCoeficiente(), c.getExponente(), aux.buscaInsertar(c.getCoeficiente(), c.getExponente()));
-             a.getLiga();
-         }
-         return aux;
+    public ListaSimple nDerivada(int n){
+        ListaSimple nDer =  this;
+                
+        for (int i=1; i <= n ; i++){
+            System.out.println("en nº rept de derivada : "+ i);
+            System.out.println(nDer.primero.getCoeficiente() + " " + nDer.primero.getExponente());
+            nDer = nDer.derivar();
+            System.out.println(nDer.mostrar());
+        }
+        return nDer;
     }
 
     Nodo buscaInsertar(float c, int e) {
@@ -156,6 +183,7 @@ public class ListaSimple {
             cabeza.setCoeficiente(cabeza.getCoeficiente()+1);
             primero = nuevo;
             ultimo = nuevo;
+            cabeza.setLiga(primero);
         }else{
             if(cabeza.getExponente() < e){
                 cabeza.setExponente(e);

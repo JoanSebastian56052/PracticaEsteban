@@ -44,6 +44,7 @@ public class Polinomios extends javax.swing.JFrame {
         btnAccion = new javax.swing.JButton();
         Resultado = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
+        ResultadoFin = new javax.swing.JLabel();
 
         jButton4.setText("jButton1");
 
@@ -57,7 +58,7 @@ public class Polinomios extends javax.swing.JFrame {
 
         btnBorrar.setText("Borrar");
 
-        cbOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Evaluar P(c)", "Suma", "Multiplicación", "Determinar", "1ra Derivada", "n-ma Derivada", "Antiderivada", "Integral definida" }));
+        cbOpciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...", "Evaluar P(c)", "Suma", "Multiplicación", "Es factor (x-c)", "1ra Derivada", "n-ma Derivada", "Antiderivada", "Integral definida" }));
         cbOpciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbOpcionesActionPerformed(evt);
@@ -86,6 +87,8 @@ public class Polinomios extends javax.swing.JFrame {
 
         Resultado.setText("Resultado");
 
+        ResultadoFin.setText("Resultado: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +114,20 @@ public class Polinomios extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addGap(274, 274, 274))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator3)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ResultadoFin)
+                        .addGap(126, 126, 126)
+                        .addComponent(Resultado))
                     .addComponent(PoliUser, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -125,18 +140,6 @@ public class Polinomios extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAccion))
                             .addComponent(txtPolAux, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(48, 48, 48))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator3)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(286, 286, 286)
-                .addComponent(Resultado)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,9 +160,11 @@ public class Polinomios extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PoliUser)
-                .addGap(13, 13, 13)
-                .addComponent(Resultado)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Resultado)
+                    .addComponent(ResultadoFin))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPoli2)
                     .addComponent(txtPol2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,6 +232,7 @@ public class Polinomios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel PoliUser;
     public javax.swing.JLabel Resultado;
+    public javax.swing.JLabel ResultadoFin;
     public javax.swing.JButton btnAccion;
     public javax.swing.JButton btnBorrar;
     public javax.swing.JButton btnSalir;
