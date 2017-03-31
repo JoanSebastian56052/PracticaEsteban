@@ -37,7 +37,7 @@ public class PracticaMain {
         vistaPoli.jLabelPoliAux.setVisible(false);
         vistaPoli.jLabelPoli2.setVisible(false);
         vistaPoli.ResultadoFin.setVisible(false);
-        
+        vistaPoli.ResultadoFin.setVisible(false);
         
         vistaPoli.setLocationRelativeTo(null);
         

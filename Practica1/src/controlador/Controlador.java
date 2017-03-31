@@ -141,18 +141,14 @@ public class Controlador implements ActionListener {
         
         String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
         ListaSimple list = toList(aux1);
-        boolean oe = false;
-        if(list.cabeza().getLiga() == null){
-          vistaPoli.txtPol1.setText("");
-          oe = true;
-          JOptionPane.showMessageDialog(null, "polinomio incorrecto, por favor digitar polinomio válido, revise los requisitos");
-        }
+
         if(e.getSource() == vistaPoli.cbOpciones){
-            if(oe){vistaPoli.cbOpciones.setSelectedIndex(0);}
-            vistaPoli.ResultadoFin.setVisible(false);
-            vistaPoli.Resultado.setVisible(false);
-            vistaPoli.txtPol2.setText("");
-            vistaPoli.txtPol2.setEditable(true);
+            if(list.cabeza().getLiga() == null){
+                  vistaPoli.txtPol1.setText("");
+                  //oe = true;
+                  vistaPoli.cbOpciones.setSelectedIndex(0);
+                  JOptionPane.showMessageDialog(null, "Polinomio incorrecto, por favor digitar polinomio válido, revise los requisitos");
+            }
             switch (vistaPoli.cbOpciones.getSelectedIndex()) {
                 //evaluar Polinomio
                 case 1:
@@ -166,6 +162,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Determinar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
 
 
                 break;
@@ -182,6 +180,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Sumar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
 
                 break;
 
@@ -197,6 +197,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Multiplicar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
 
                 break;
 
@@ -212,6 +214,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoli2.setVisible(true);
                     vistaPoli.btnAccion.setText("Determinar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
 
                 break;
 
@@ -227,6 +231,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Primera derivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
                     //Inicio código o implemenacion de métodos
 
                 break;
@@ -243,6 +249,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Enésima derivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
                 break;
 
                 //Antiderivada
@@ -256,6 +264,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Antiderivada");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
                 break;
 
                 //Integral definida
@@ -273,6 +283,8 @@ public class Controlador implements ActionListener {
                     vistaPoli.jLabelPoliAux.setVisible(true);
                     vistaPoli.btnAccion.setText("Integrar");
                     vistaPoli.btnAccion.setVisible(true);
+                    vistaPoli.ResultadoFin.setVisible(false);
+                    vistaPoli.Resultado.setVisible(false);
                 break;
             }
         }
@@ -285,7 +297,8 @@ public class Controlador implements ActionListener {
             vistaPoli.jLabelPoli2.setVisible(true);
             vistaPoli.ResultadoFin.setVisible(true);
             vistaPoli.Resultado.setVisible(true);
-            vistaPoli.txtPol2.setEditable(false);
+            vistaPoli.jLabelPoli2.setVisible(false);
+            vistaPoli.txtPol2.setVisible(false);
             
             
             
@@ -309,9 +322,9 @@ public class Controlador implements ActionListener {
                 //Multiplicacion entre dos listas
                 case 3:
                     String auxMult = sinEspacios(vistaPoli.txtPol2.getText());
-                    ListaSimple listMult = toList(auxMult);
-                    vistaPoli.Resultado.setText(list.sumaPolinomios(listMult).mostrar());
-                    break;
+//                    ListaSimple listMult = toList(auxMult);
+//                    vistaPoli.Resultado.setText(list.sumaPolinomios(listMult).mostrar());
+//                    break;
                 //Determinar (x-c) es factor de P(X)
                 case 4:
                     float c = Float.parseFloat(vistaPoli.txtPol2.getText());
@@ -340,6 +353,7 @@ public class Controlador implements ActionListener {
                     float b = Float.parseFloat(vistaPoli.txtPolAux.getText());
                     vistaPoli.Resultado.setText(Float.toString(list.integralDef(d,b)));
                     break;
+                    
             }
             
         }
