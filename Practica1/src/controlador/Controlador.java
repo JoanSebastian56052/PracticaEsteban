@@ -143,6 +143,8 @@ public class Controlador implements ActionListener {
         
         String aux1 = sinEspacios(vistaPoli.txtPol1.getText());
         ListaSimple list = toList(aux1);
+        list.ordenar();
+        
 
         if(e.getSource() == vistaPoli.cbOpciones){
             if(list.cabeza().getLiga() == null){
@@ -158,7 +160,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese c");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -176,7 +178,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -193,7 +195,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese segundo polinomio");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -210,7 +212,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese un valor C para determinar si el (x - c) es factor de P(x) ");
                     vistaPoli.jLabelPoli2.setVisible(true);
@@ -227,7 +229,7 @@ public class Controlador implements ActionListener {
                    
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.jLabelPoli2.setVisible(false);
                     vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
@@ -235,7 +237,7 @@ public class Controlador implements ActionListener {
                     vistaPoli.btnAccion.setVisible(true);
                     vistaPoli.ResultadoFin.setVisible(false);
                     vistaPoli.Resultado.setVisible(false);
-                    //Inicio código o implemenacion de métodos
+                  
 
                 break;
 
@@ -245,7 +247,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.jLabelPoli2.setVisible(false);
                     vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
@@ -261,7 +263,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(false);
                     vistaPoli.txtPol2.setEditable(false);
                     vistaPoli.btnAccion.setText("Antiderivada");
@@ -276,7 +278,7 @@ public class Controlador implements ActionListener {
                     
                     //------------------------------
                     vistaPoli.PoliUser.setVisible(true);
-                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+aux1);
+                    vistaPoli.PoliUser.setText("Polinomio ingresado: "+list.mostrar());
                     vistaPoli.txtPol2.setVisible(true);
                     vistaPoli.txtPolAux.setVisible(true);
                     vistaPoli.jLabelPoli2.setText("Ingrese a");
@@ -310,23 +312,25 @@ public class Controlador implements ActionListener {
                 
                 //evaluar
                 case 1:
-                    float a = Float.parseFloat(vistaPoli.txtPol2.getText());
-                    Float sumResult = list.evalua(a);
-                    vistaPoli.Resultado.setText(sumResult.toString());
-                    ;//resultado según el case
+                    float a = Float.parseFloat(vistaPoli.txtPol2.getText());                    
+                    Float Result = list.evalua(a);
+                    vistaPoli.Resultado.setText(Result.toString());
+                    
                     break;
                 //Suma entre dos listas
                 case 2:
                     String auxSum = sinEspacios(vistaPoli.txtPol2.getText());
                     ListaSimple listToSum = toList(auxSum);
+                    listToSum.ordenar();
                     vistaPoli.Resultado.setText(list.sumaPolinomios(listToSum).mostrar());
                     break;
                 //Multiplicacion entre dos listas
                 case 3:
                     String auxMult = sinEspacios(vistaPoli.txtPol2.getText());
-//                    ListaSimple listMult = toList(auxMult);
-//                    vistaPoli.Resultado.setText(list.sumaPolinomios(listMult).mostrar());
-//                    break;
+                    ListaSimple listMult = toList(auxMult);
+                    listMult.ordenar();
+                    vistaPoli.Resultado.setText(list.multiplcacion(listMult).mostrar());
+                      break;
                 //Determinar (x-c) es factor de P(X)
                 case 4:
                     float c = Float.parseFloat(vistaPoli.txtPol2.getText());
