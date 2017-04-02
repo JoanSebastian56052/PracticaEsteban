@@ -131,8 +131,10 @@ public class Controlador implements ActionListener {
         if(auxE != "" && auxC != ""){
             pol.insertarNodo(Float.parseFloat(auxC), Integer.parseInt(auxE));
         }
-        System.out.println("mi cabeza tiene de liga: "+pol.cabeza().getLiga());
+        pol.ordenar();
+        
         System.out.println("mi lista es: "+ pol.mostrar());
+        System.out.println("el primer nodo tiene expo:"+ pol.primerNodo().getExponente()  + " mi cabeza tiene de liga: "+pol.cabeza().getLiga()+ "con exponente: "+pol.cabeza().getLiga().getExponente());
         return pol;
     }
     
@@ -316,8 +318,8 @@ public class Controlador implements ActionListener {
                 //Suma entre dos listas
                 case 2:
                     String auxSum = sinEspacios(vistaPoli.txtPol2.getText());
-                    ListaSimple listSum = toList(auxSum);
-                    vistaPoli.Resultado.setText(list.sumaPolinomios(listSum).mostrar());
+                    ListaSimple listToSum = toList(auxSum);
+                    vistaPoli.Resultado.setText(list.sumaPolinomios(listToSum).mostrar());
                     break;
                 //Multiplicacion entre dos listas
                 case 3:

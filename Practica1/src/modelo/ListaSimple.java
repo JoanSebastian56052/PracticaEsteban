@@ -60,24 +60,28 @@ public class ListaSimple {
     }
     
     public ListaSimple sumaPolinomios(ListaSimple q) {
-        a = this.primerNodo();
-        b= q.primerNodo();
+        a = this.ultimoNodo();
+        b= q.ultimoNodo();
         ListaSimple suma = new ListaSimple();
         
-        while ((a.getExponente() != 0) || (b.getExponente() != 0)) {
+        while ((a != null) || (b != null)) {
+            System.out.println("esponente de A:"+ a.getExponente() + " y el Exponente de B: "+ b.getExponente());
+                    
             if(a.getExponente() == b.getExponente()) {
                 auxiliar.setCoeficiente(a.getCoeficiente()+a.getCoeficiente());
                 auxiliar.setExponente(a.getExponente());
-                aux.insertar(auxiliar.getCoeficiente(),auxiliar.getExponente(), aux.buscaInsertar(auxiliar.getCoeficiente(), auxiliar.getExponente()));
+                suma.insertarNodo(auxiliar.getCoeficiente(),auxiliar.getExponente());
+                a = anterior(a);
+                b = anterior(b);
             } else if(a.getExponente() > b.getExponente()) {
-                aux.insertar(a.getCoeficiente(), a.getExponente(), aux.buscaInsertar(a.getCoeficiente(), a.getExponente()));
-                a = a.getLiga();
+                suma.insertarNodo(a.getCoeficiente(), a.getExponente());
+                a = anterior(a);
             } else {
-                aux.insertar(b.getCoeficiente(), b.getExponente(), aux.buscaInsertar(b.getCoeficiente(), b.getExponente()));
-                b = b.getLiga();
+                suma.insertarNodo(b.getCoeficiente(), b.getExponente());
+                b = anterior(b);
             }
         }
-        return aux;
+        return suma;
     }
     
     public ListaSimple multiplcacion(ListaSimple q){
@@ -176,6 +180,40 @@ public class ListaSimple {
         return q;
     }
     
+    public void ordenar(){
+        Nodo p;
+        Nodo pp ;
+        Nodo q;
+        Nodo pq;
+        Nodo max;
+        Nodo pmax;
+        
+        p = primerNodo();
+        pp = null;
+        while(p != ultimoNodo()){
+            max = p;
+            pmax = pp;
+            q = p.getLiga();
+            pq = p;
+            
+            while(!finRecorrido(q)){
+                if(q.getExponente() > max.getExponente()){
+                    max = q;
+                    pmax = pq;
+                }
+                pq = q;
+                q = q.getLiga();
+            }
+            if(max == p){
+                pp = p;
+                p = p.getLiga();
+            }else{
+                desconectar(max, pmax);
+                conectar(max,pp);
+                pp = max;
+            } 
+        }
+    }
     public void insertarNodo(float c, int e){
         Nodo nuevo = new Nodo(c,e);
         if(this.esVacia()){
@@ -235,14 +273,12 @@ public class ListaSimple {
     
     public String mostrar(){
         Nodo cambielo = this.primerNodo();
-        Nodo cabezon = this.cabeza();
 
         String paraMostrar = "";
         while(!finRecorrido(cambielo)){
             paraMostrar = paraMostrar + cambielo.getCoeficiente() + "x" + cambielo.getExponente() + " ";
             cambielo = cambielo.getLiga();
         }
-        System.out.println(paraMostrar + " y mi cabeza es: " + cabezon.getCoeficiente() + " " +  cabezon.getExponente());
         return paraMostrar;
     }  
     
@@ -252,8 +288,10 @@ public class ListaSimple {
             if(x == ultimo) {
                 ultimo = y;
             }
-        } else {
+        } else {    
             primero = primero.getLiga();
+            System.out.println("el nuevo primero es:"+primero.getExponente());
+            cabeza.setLiga(primero);
             if(primero == null) {
                 ultimo = null;
             }
