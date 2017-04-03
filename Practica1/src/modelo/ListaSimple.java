@@ -99,21 +99,17 @@ public class ListaSimple {
     public ListaSimple multiplcacion(ListaSimple q){
         a = this.primerNodo();
         b= q.primerNodo();
-        ListaSimple resul = new ListaSimple();
         ListaSimple aux = new ListaSimple();
-        ListaSimple aux2 = new ListaSimple();
         while(!finRecorrido(a)){ 
             while(!q.finRecorrido(b)){
-                aux.insertarNodo(a.getCoeficiente()*b.getCoeficiente(), (int) (a.getCoeficiente()+b.getCoeficiente()));
+                aux.insertarNodo(a.getCoeficiente()*b.getCoeficiente(), (int)a.getExponente()+ (int) b.getExponente());
                 b=b.getLiga();
             }
             a=a.getLiga();
             b= q.primerNodo();
-            aux2=aux;
-            aux=null;
-            resul = resul.sumaPolinomios(aux2);
         }
-        return resul;
+        aux.ordenar();
+        return aux;
     }
     public boolean detFactor(float c){
         boolean isfactor = false;
